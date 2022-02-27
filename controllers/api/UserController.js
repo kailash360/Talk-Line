@@ -1,6 +1,32 @@
 const mongoose = require('mongoose');
-const { User } = require('../../models')
+const { User, Post } = require('../../models')
 const { catchAsync } = require('../../utils')
+
+exports.getProfile = catchAsync(async(req, res) => {
+
+    const user = await User.findOne({ _id: req.headers._id }).populate('followers following')
+    if (!user) return res.json({ success: false, message: 'User not found' })
+
+    return res.json({
+        success: true,
+        data: {
+            username: user.username,
+            followingCount: user.following.length,
+            followerCount: user.followers.length
+        }
+    })
+
+})
+
+exports.getUserPosts = catchAsync(async(req, res) => {
+
+    const posts = await Post
+        .find({ owner: req.headers._id })
+        .populate('comments')
+        .populate('likedBy', 'username email')
+        .sort('date')
+    return res.json({ success: true, data: { posts } })
+})
 
 exports.followUser = catchAsync(async(req, res) => {
 
@@ -57,20 +83,4 @@ exports.unfollowUser = catchAsync(async(req, res) => {
         success: true,
         message: 'Successfully unfollowed the user'
     })
-})
-
-exports.getProfile = catchAsync(async(req, res) => {
-
-    const user = await User.findOne({ _id: req.headers._id }).populate('followers following')
-    if (!user) return res.json({ success: false, message: 'User not found' })
-
-    return res.json({
-        success: true,
-        data: {
-            username: user.username,
-            followingCount: user.following.length,
-            followerCount: user.followers.length
-        }
-    })
-
 })

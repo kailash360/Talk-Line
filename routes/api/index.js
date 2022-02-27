@@ -7,6 +7,7 @@ const { validateToken, isOwner } = require('../../middlewares')
 router.post('/register', AuthController.register)
 router.post('/authenticate', AuthController.authenticate)
 
+router.get('/all_posts', validateToken, UserController.getUserPosts)
 router.post('/follow/:id', validateToken, UserController.followUser)
 router.post('/unfollow/:id', validateToken, UserController.unfollowUser)
 router.get('/user', validateToken, UserController.getProfile)
