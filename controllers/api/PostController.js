@@ -2,6 +2,22 @@ const mongoose = require('mongoose')
 const { Post, User, Comment } = require('../../models')
 const { catchAsync } = require('../../utils')
 
+exports.getPost = catchAsync(async(req, res) => {
+
+    if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
+
+    // fetch the post
+    const post = await
+    Post.findOne({ _id: req.params.id })
+        .populate('likedBy', 'username email') // get the uername and email of the liked user
+        .populate('comments') // populate the comments
+
+    // check if post is not found
+    if (!post) return res.json({ success: false, message: 'Post not found' })
+
+    return res.json({ success: true, data: { post } })
+})
+
 exports.createPost = catchAsync(async(req, res) => {
 
     if (!req.body.title || !req.body.description) return res.json({ success: false, message: 'Title and description are required' })
@@ -88,9 +104,11 @@ exports.addComment = catchAsync(async(req, res) => {
     if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
     if (!req.body.comment) return res.json({ success: false, message: 'Comment cannot be empty' })
 
+    // check if the post is valid
     const post = await Post.findOne({ _id: req.params.id })
     if (!post) return res.json({ success: false, message: 'Invalid post ID' })
 
+    // create the comment
     const comment = await Comment.create({
         owner: req.headers._id,
         post: req.params.id,

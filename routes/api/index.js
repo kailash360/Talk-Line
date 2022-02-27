@@ -12,6 +12,7 @@ router.post('/unfollow/:id', validateToken, UserController.unfollowUser)
 router.get('/user', validateToken, UserController.getProfile)
 
 router.post('/posts', validateToken, PostController.createPost)
+router.get('/posts/:id', PostController.getPost)
 router.delete('/posts/:id', validateToken, isOwner, PostController.deletePost)
 router.post('/like/:id', validateToken, PostController.likePost)
 router.post('/unlike/:id', validateToken, PostController.unlikePost)
