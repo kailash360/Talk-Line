@@ -61,3 +61,24 @@ exports.likePost = catchAsync(async(req, res, next) => {
     return res.json({ success: true, message: 'Post liked successfully' })
 
 })
+
+exports.unlikePost = catchAsync(async(req, res, next) => {
+
+    if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
+
+    const post = await Post.findOne({ _id: req.params.id })
+    const user = await User.findOne({ _id: req.headers._id })
+
+    //check if the user has not liked the post
+    if (!user.liked.includes(req.params.id) || !post.likedBy.includes(req.headers._id)) return res.json({ success: false, message: 'You have not liked this post' })
+
+    // Remove the post from the liked posts of the user
+    user.liked = user.liked.filter(id => !mongoose.Types.ObjectId(id).equals(mongoose.Types.ObjectId(req.params.id)))
+    await user.save()
+
+    // Removethe user id from the likedBy of the post
+    post.likedBy = post.likedBy.filter(id => !mongoose.Types.ObjectId(id).equals(mongoose.Types.ObjectId(req.headers._id)))
+    await post.save()
+
+    return res.json({ success: true, message: 'Post unliked successfully' })
+})

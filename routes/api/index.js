@@ -14,5 +14,6 @@ router.get('/user', validateToken, UserController.getProfile)
 router.post('/posts', validateToken, PostController.createPost)
 router.delete('/posts/:id', validateToken, isOwner, PostController.deletePost)
 router.post('/like/:id', validateToken, PostController.likePost)
+router.post('/unlike/:id', validateToken, PostController.unlikePost)
 
 module.exports = router
