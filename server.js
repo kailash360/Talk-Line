@@ -2,16 +2,17 @@ require('dotenv').config()
 const express = require('express')
 const db = require('./config/db')
 const apiRoutes = require('./routes/api')
-const defaultRoutes = require('./routes/default')
+const defaultControllers = require('./controllers/default')
 
 const app = express()
 
 db.connect()
 
 app.use(express.json())
-app.get('/', defaultRoutes)
 app.use('/api', apiRoutes)
 
+app.all('/', defaultControllers.Success)
+app.all('*', defaultControllers.Invalid)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {

@@ -2,6 +2,7 @@ const router = require('express').Router()
 const AuthController = require('../../controllers/auth/AuthController')
 const UserController = require('../../controllers/api/UserController')
 const PostController = require('../../controllers/api/PostController')
+const defaultControllers = require('../../controllers/default')
 const { validateToken, isOwner } = require('../../middlewares')
 
 router.post('/register', AuthController.register)
@@ -20,11 +21,6 @@ router.post('/unlike/:id', validateToken, PostController.unlikePost)
 router.post('/comment/:id', validateToken, PostController.addComment)
 
 //For invalid routes
-router.use('*', (req, res) => {
-    res.status(404).json({
-        success: false,
-        message: 'Invalid route'
-    })
-})
+router.all('*', defaultControllers.Invalid)
 
 module.exports = router
