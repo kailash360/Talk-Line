@@ -58,3 +58,19 @@ exports.unfollowUser = catchAsync(async(req, res) => {
         message: 'Successfully unfollowed the user'
     })
 })
+
+exports.getProfile = catchAsync(async(req, res) => {
+
+    const user = await User.findOne({ _id: req.headers._id }).populate('followers following')
+    if (!user) return res.json({ success: false, message: 'User not found' })
+
+    return res.json({
+        success: true,
+        data: {
+            username: user.username,
+            followingCount: user.following.length,
+            followerCount: user.followers.length
+        }
+    })
+
+})
