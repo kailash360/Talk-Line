@@ -2,6 +2,10 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../models')
 const { catchAsync } = require('../utils')
 
+/**
+ * @middleware to validate the jwt token
+ * for authenticating the user
+ */
 const validateToken = catchAsync(async(req, res, next) => {
 
     jwt.verify(req.headers.token, process.env.JWT_KEY, async(err, decoded) => {

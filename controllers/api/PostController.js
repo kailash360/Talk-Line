@@ -2,6 +2,12 @@ const mongoose = require('mongoose')
 const { Post, User, Comment } = require('../../models')
 const { catchAsync } = require('../../utils')
 
+/**
+ * @name getPost
+ * @description
+ * to get the posts created by the user,
+ * including details of likes, comments
+ */
 exports.getPost = catchAsync(async(req, res) => {
 
     if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
@@ -18,6 +24,11 @@ exports.getPost = catchAsync(async(req, res) => {
     return res.json({ success: true, data: { post } })
 })
 
+/**
+ * @name createPost
+ * @description
+ * To create a new post
+ */
 exports.createPost = catchAsync(async(req, res) => {
 
     if (!req.body.title || !req.body.description) return res.json({ success: false, message: 'Title and description are required' })
@@ -39,6 +50,11 @@ exports.createPost = catchAsync(async(req, res) => {
 
 })
 
+/**
+ * @name deletePost
+ * @description'
+ * to delete a post created by the user
+ */
 exports.deletePost = catchAsync(async(req, res) => {
 
     if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
@@ -56,6 +72,11 @@ exports.deletePost = catchAsync(async(req, res) => {
     return res.json({ success: true, message: 'Post deleted successfully' })
 })
 
+/**
+ * @name likePost
+ * @description
+ * To like a post
+ */
 exports.likePost = catchAsync(async(req, res, next) => {
 
     if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
@@ -78,6 +99,12 @@ exports.likePost = catchAsync(async(req, res, next) => {
 
 })
 
+
+/**
+ * @name unlikePost
+ * @description
+ * To unlike a post
+ */
 exports.unlikePost = catchAsync(async(req, res, next) => {
 
     if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
@@ -99,6 +126,12 @@ exports.unlikePost = catchAsync(async(req, res, next) => {
     return res.json({ success: true, message: 'Post unliked successfully' })
 })
 
+
+/**
+ * @name addcomment
+ * @description
+ * to add comment in a post
+ */
 exports.addComment = catchAsync(async(req, res) => {
 
     if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })

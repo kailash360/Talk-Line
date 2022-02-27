@@ -3,6 +3,11 @@ const bcrypt = require('bcrypt')
 const { User } = require('../../models')
 const { catchAsync } = require('../../utils')
 
+/**
+ * @name register
+ * @description
+ * To register a new user
+ */
 exports.register = catchAsync(async(req, res) => {
 
     if (!req.body.username || !req.body.password || !req.body.email) return res.json({ success: false, message: 'All fields are required' })
@@ -24,6 +29,11 @@ exports.register = catchAsync(async(req, res) => {
     return res.json({ success: true, data: { user } })
 })
 
+/**
+ * @name authenticate
+ * @description
+ * To authenticate or login a user
+ */
 exports.authenticate = catchAsync(async(req, res) => {
 
     if (!req.body.email || !req.body.password) return res.json({ success: false, message: 'All fields are required' })

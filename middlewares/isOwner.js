@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const { Post, User } = require('../models')
 const { catchAsync } = require('../utils')
 
+/**
+ * @middleware to verify if the request for any update/delete
+ * of a post is made by the owner and not someone else
+ */
 const isOwner = catchAsync(async(req, res, next) => {
 
     const user = await User.findOne({ _id: req.headers._id })

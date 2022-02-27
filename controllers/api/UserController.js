@@ -2,9 +2,15 @@ const mongoose = require('mongoose');
 const { User, Post } = require('../../models')
 const { catchAsync } = require('../../utils')
 
+
+/**
+ * @name getProfile
+ * @description 
+ * To get the profile of the user including the count of followers and following
+ */
 exports.getProfile = catchAsync(async(req, res) => {
 
-    const user = await User.findOne({ _id: req.headers._id }).populate('followers following')
+    const user = await User.findOne({ _id: req.headers._id })
     if (!user) return res.json({ success: false, message: 'User not found' })
 
     return res.json({
@@ -18,6 +24,11 @@ exports.getProfile = catchAsync(async(req, res) => {
 
 })
 
+/**
+ * @name getUserPosts
+ * @description
+ * To get the posts created by the user
+ */
 exports.getUserPosts = catchAsync(async(req, res) => {
 
     const posts = await Post
@@ -28,6 +39,12 @@ exports.getUserPosts = catchAsync(async(req, res) => {
     return res.json({ success: true, data: { posts } })
 })
 
+
+/**
+ * @name followUser
+ * @description
+ * to start following a user
+ */
 exports.followUser = catchAsync(async(req, res) => {
 
     if (!mongoose.isValidObjectId(req.params.id)) return res.json({ success: false, message: 'Invalid user id' })
@@ -57,6 +74,11 @@ exports.followUser = catchAsync(async(req, res) => {
 
 })
 
+/**
+ * @name unfollowUser
+ * @description
+ * to unfollow a user
+ */
 exports.unfollowUser = catchAsync(async(req, res) => {
 
     if (!mongoose.isValidObjectId(req.params.id)) return res.json({ success: false, message: 'Invalid user id' })

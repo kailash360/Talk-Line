@@ -4,13 +4,18 @@ const db = require('./config/db')
 const apiRoutes = require('./routes/api')
 const defaultControllers = require('./controllers/default')
 
+//Initializing the application
 const app = express()
 
+//Connecting to database
 db.connect()
 
 app.use(express.json())
+
+//Routes to be used
 app.use('/api', apiRoutes)
 
+// Default routes to handle invalid routes
 app.all('/', defaultControllers.Success)
 app.all('*', defaultControllers.Invalid)
 
