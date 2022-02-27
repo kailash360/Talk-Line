@@ -1,3 +1,4 @@
 const validateToken = require('./validateToken')
+const isOwner = require('./isOwner')
 
-module.exports = { validateToken }
+module.exports = { validateToken, isOwner }
