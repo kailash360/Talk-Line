@@ -33,6 +33,10 @@ const UserSchema = new mongoose.Schema({
     comments: [{
         type: mongoose.Types.ObjectId,
         ref: 'Comment'
+    }],
+    liked: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Post'
     }]
 })
 

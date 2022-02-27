@@ -11,9 +11,7 @@ exports.createPost = catchAsync(async(req, res) => {
         title: req.body.title,
         description: req.body.description,
         owner: req.headers._id,
-        date: new Date().toUTCString(),
-        likes: 0,
-        comments: []
+        date: new Date().toUTCString()
     })
 
     // Add the post to the list of posts by the user
