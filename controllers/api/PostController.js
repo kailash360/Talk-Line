@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { Post, User } = require('../../models')
+const { Post, User, Comment } = require('../../models')
 const { catchAsync } = require('../../utils')
 
 exports.createPost = catchAsync(async(req, res) => {
@@ -81,4 +81,31 @@ exports.unlikePost = catchAsync(async(req, res, next) => {
     await post.save()
 
     return res.json({ success: true, message: 'Post unliked successfully' })
+})
+
+exports.addComment = catchAsync(async(req, res) => {
+
+    if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
+    if (!req.body.comment) return res.json({ success: false, message: 'Comment cannot be empty' })
+
+    const post = await Post.findOne({ _id: req.params.id })
+    if (!post) return res.json({ success: false, message: 'Invalid post ID' })
+
+    const comment = await Comment.create({
+        owner: req.headers._id,
+        post: req.params.id,
+        description: req.body.description
+    })
+
+    // Add the comment to post
+    post.comments.push(comment._id)
+    await post.save()
+
+    return res.json({
+        success: true,
+        data: {
+            commentId: comment._id
+        }
+    })
+
 })
