@@ -2,12 +2,14 @@ require('dotenv').config()
 const express = require('express')
 const db = require('./config/db')
 const apiRoutes = require('./routes/api')
+const defaultRoutes = require('./routes/default')
 
 const app = express()
 
 db.connect()
 
 app.use(express.json())
+app.get('/', defaultRoutes)
 app.use('/api', apiRoutes)
 
 

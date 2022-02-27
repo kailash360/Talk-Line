@@ -19,4 +19,12 @@ router.post('/like/:id', validateToken, PostController.likePost)
 router.post('/unlike/:id', validateToken, PostController.unlikePost)
 router.post('/comment/:id', validateToken, PostController.addComment)
 
+//For invalid routes
+router.use('*', (req, res) => {
+    res.status(404).json({
+        success: false,
+        message: 'Invalid route'
+    })
+})
+
 module.exports = router
