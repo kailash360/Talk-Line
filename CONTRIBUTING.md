@@ -6,6 +6,8 @@ If you want to contribute to this project, go through the following instructions
 3. Run the following command in the terminal in the backend as well as the frontend folder
 > ``` npm i ```
 
+Or run the following command in the terminal in the root folder
+> ``` npm run install-all ```
 4. Create a `.env` file into your root folder and copy the environment variables from the `.env.example` into `.env`. Fill in the suitable values for each of the variables.
 #### The project has been successfully installed in the device.
 #### The next step is to run the project locally.
