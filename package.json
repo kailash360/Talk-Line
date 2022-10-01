@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "install-frontend": "cd frontend && npm install",
-    "install-backend": "cd backend && npm install"
+    "install-backend": "cd backend && npm install",
+    "install-all": "(cd frontend && npm install)&(cd .. && cd backend && npm install)"
   }
 }
