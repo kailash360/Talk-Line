@@ -15,4 +15,4 @@ This is a fullstack Talk-Line application.
 
 ## Setting Up The Application Locally
 
-To setup the application head over to the [CONTRIBUTING.md](/CONTRIBUTING.md) file and follow all the instruction.
+To setup the application head over to the [CONTRIBUTING.md](/CONTRIBUTING.md) file and follow steps 1-4.
