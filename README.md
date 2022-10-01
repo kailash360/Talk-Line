@@ -1,10 +1,10 @@
-# Social Media Backend
+# Talk-Line Backend
 
 ## About
 
-This is the backend of social media application.
+This is a fullstack Talk-Line application.
 
-## Tech Stacks
+## Tech Stacks used
 
 - NodeJS
 - ExpressJS
@@ -13,7 +13,7 @@ This is the backend of social media application.
 - Tailwindcss
 
 
-## Setting Up Locally
+## Setting Up The Application Locally
 
 ### Backend Setup
 
