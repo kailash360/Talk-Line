@@ -77,7 +77,7 @@ exports.deletePost = catchAsync(async(req, res) => {
  * @description
  * To like a post
  */
-exports.likePost = catchAsync(async(req, res, next) => {
+exports.likePost = catchAsync(async(req, res) => {
 
     if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
 
@@ -105,7 +105,7 @@ exports.likePost = catchAsync(async(req, res, next) => {
  * @description
  * To unlike a post
  */
-exports.unlikePost = catchAsync(async(req, res, next) => {
+exports.unlikePost = catchAsync(async(req, res) => {
 
     if (!req.params.id) return res.json({ success: false, message: 'Post ID is required' })
 

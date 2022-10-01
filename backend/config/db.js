@@ -4,7 +4,7 @@ const connect = () => {
         process.env.MONGO_DB_URI, () => {
             console.log('Connected to database successfully')
         }
-    ).catch(err => {
+    ).catch(e => {
         console.log('Error connecting to database:', e.message)
     })
 }
