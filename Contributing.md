@@ -3,19 +3,30 @@ If you want to contribute to this project, go through the following instructions
 # Local Setup
 1. Fork and clone the project into local device
 2. Make sure NodeJS is already installed. If not, download from [here](https://nodejs.org/en/download/)
-3. Run the following command in the terminal in the respective folder
+3. Run the following command in the terminal in the backend as well as the frontend folder
 > ``` npm i ```
 
 4. Create a `.env` file into your root folder and copy the environment variables from the `.env.example` into `.env`. Fill in the suitable values for each of the variables.
 #### The project has been successfully installed in the device.
-5. Start the application by running the following command in the frontend folder
+#### The next step is to run the project locally.
+## Frontend
+1. Start the application's frontend by running the following command
+> ``` cd .\frontend\ ```
+
 > ``` npm start ```
 
-Now go to the address below to your default browser
+2. Now go to the address below to your default browser
 > ```localhost:3000```
 
-6. Start the application's backend by running the following command in the backend folder
+## Backend
+1. Start the application's backend by running the following command
+
+> ``` cd .\backend\ ```
+
 > ``` npm start ```
+
+2. The backend is up and running at
+> ```localhost:5000```
 
 *Steps 1-4 are needed for first-time installation only. Only steps 5 and 6 will be needed while devolping the project.*
 
