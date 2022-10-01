@@ -1,0 +1,11 @@
+{
+  "name": "talk-line",
+  "version": "1.0.0",
+  "description": "This is a fullstack Talk-Line application.",
+  "main": "",
+  "scripts": {
+    "install-frontend": "cd frontend && npm install",
+    "install-backend": "cd backend && npm install",
+    "install-all": "(cd frontend && npm install)&(cd .. && cd backend && npm install)"
+  }
+}
