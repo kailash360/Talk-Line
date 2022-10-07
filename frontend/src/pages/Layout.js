@@ -1,16 +1,14 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-//Pages linked from NavBar
-import About from './main_pages/About'
-import Home from './main_pages/Home'
-import Chat from './main_pages/Chat'
-import Profile from './main_pages/Profile'
-import Signup from './Signup'
-import Login from './Login'
-import Feed from './posts/Feed'
-import Post from './posts/Post'
-
+import About from './About'
+import Home from './Home'
+import Chat from './Chat'
+import Profile from './Profile'
+import Signup from './auth/Signup'
+import Login from './auth/Login'
+import Feed from '../components/Feed'
+import Post from '../components/Post'
 
 const Layout = () => {
   return (
@@ -26,7 +24,7 @@ const Layout = () => {
         <Route path="profile" element={<Profile />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
-        <Route path="*" element={<div>404</div>} />
+        <Route path="*" element={<div>404</div>} /> {/* just adding a 404 catch here */}
       </Routes>
     </div>
   )
