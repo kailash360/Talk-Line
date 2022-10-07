@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const navLinks = [
   {
     nav: "Home",
@@ -17,6 +17,7 @@ const navLinks = [
     nav: "Profile",
     link: "/profile",
   },
+  // just added login/signup here to show functionality
   {
     nav: "Login",
     link: "/login",
