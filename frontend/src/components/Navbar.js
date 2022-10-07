@@ -17,6 +17,14 @@ const navLinks = [
     nav: "Profile",
     link: "/profile",
   },
+  {
+    nav: "Login",
+    link: "/login",
+  },
+  {
+    nav: "Signup",
+    link: "/signup",
+  },
 ]
 const Navbar = () => {
   return (
