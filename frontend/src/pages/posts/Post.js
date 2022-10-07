@@ -1,11 +1,9 @@
 import React from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 
 const Post = () => {
     const { id } = useParams()
-    const location = useLocation();
-    const { postList } = location.state
-
+    const { postList } = useOutletContext()   /* remove if using a global provider */
     const currentPost = postList.find(post => post.id === id)
     return (
         <div>
