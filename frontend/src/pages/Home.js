@@ -7,7 +7,6 @@ const postList = [
     { id: "3", preview: "post 3", body: "this is post 3" },
     { id: "4", preview: "post 4", body: "this is post 4" },
 ]
-
 const Home = () => {
     return (
         <div>
