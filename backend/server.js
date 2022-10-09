@@ -3,6 +3,7 @@ const express = require('express')
 const db = require('./config/db')
 const apiRoutes = require('./routes/api')
 const defaultControllers = require('./controllers/default')
+const cors= require('cors')
 
 //Initializing the application
 const app = express()
@@ -11,6 +12,9 @@ const app = express()
 db.connect()
 
 app.use(express.json())
+
+// enabling all origins
+app.use(cors())
 
 //Routes to be used
 app.use('/api', apiRoutes)
